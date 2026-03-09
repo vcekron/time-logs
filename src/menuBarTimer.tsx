@@ -7,7 +7,7 @@ export default function Command() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeTimer, setActiveTimer] = useState<TimeEntry | null>(null);
   const [project, setProject] = useState<Project | undefined>();
-  const [elapsedTime, setElapsedTime] = useState<string>("00:00");
+  const [elapsedTime, setElapsedTime] = useState<string>("0:00");
 
   useEffect(() => {
     let interval: NodeJS.Timeout | undefined;
@@ -26,7 +26,7 @@ export default function Command() {
           const duration = Date.now() - new Date(timer.startTime).getTime();
           const hours = Math.floor(duration / (1000 * 60 * 60));
           const minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
-          setElapsedTime(`${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`);
+          setElapsedTime(`${hours}:${String(minutes).padStart(2, "0")}`);
 
           // Only set up the interval if we have an active timer
           if (!interval) {
