@@ -57,7 +57,7 @@
       "name": "exportLogs",
       "title": "Export Time Logs",
       "subtitle": "Time Logs",
-      "description": "Export time logs as markdown",
+      "description": "Export time logs as Markdown or CSV",
       "mode": "view"
     },
     {
@@ -101,6 +101,13 @@
           "value": "60"
         }
       ]
+    },
+    {
+      "name": "exportDirectory",
+      "title": "Export Directory",
+      "description": "Directory where exported files will be saved",
+      "type": "directory",
+      "required": false
     }
   ],
   "dependencies": {
