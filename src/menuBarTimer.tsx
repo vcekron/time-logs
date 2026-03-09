@@ -5,6 +5,7 @@ import { TimeEntry, Project } from "./models";
 
 interface MenuBarPreferences {
   menuBarDisplay: string;
+  menuBarShowLabel: boolean;
 }
 
 export default function Command() {
@@ -86,17 +87,27 @@ export default function Command() {
     }
   };
 
-  const { menuBarDisplay } = getPreferenceValues<MenuBarPreferences>();
+  const { menuBarDisplay, menuBarShowLabel } = getPreferenceValues<MenuBarPreferences>();
   const showIcon = menuBarDisplay === "icon";
 
-  const title = isLoading
-    ? "Loading..."
-    : activeTimer
-      ? showIcon ? undefined : elapsedTime
-      : "";
+  const label = activeTimer
+    ? `${project?.name ? project.name + " — " : ""}${activeTimer.description || "Untitled"}`
+    : "";
+
+  let title: string | undefined;
+  if (isLoading) {
+    title = "Loading...";
+  } else if (activeTimer) {
+    const parts: string[] = [];
+    if (menuBarShowLabel && label) parts.push(label);
+    if (!showIcon) parts.push(elapsedTime);
+    title = parts.length > 0 ? parts.join(" · ") : undefined;
+  } else {
+    title = "";
+  }
 
   const icon = activeTimer && showIcon ? Icon.Clock : undefined;
-  const tooltip = activeTimer ? `Active Timer — ${elapsedTime}` : "Active Timer";
+  const tooltip = activeTimer ? `${label} · ${elapsedTime}` : "Active Timer";
 
   if (!isLoading && !activeTimer) {
     return null;

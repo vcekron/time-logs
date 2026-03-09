@@ -86,6 +86,15 @@
               "value": "icon"
             }
           ]
+        },
+        {
+          "name": "menuBarShowLabel",
+          "title": "Show Label",
+          "label": "Show project and task name",
+          "description": "Display the project and task name alongside the timer",
+          "type": "checkbox",
+          "required": false,
+          "default": false
         }
       ]
     }
