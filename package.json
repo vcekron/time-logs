@@ -3,7 +3,7 @@
   "name": "time-logs",
   "title": "Time Logs",
   "label": "Time Logs",
-  "description": "Track, manage, and export time logs on tasks and projects.",
+  "description": "Track, manage, and export time logs with CSV support and minimal menu bar display.",
   "icon": "extension-icon.png",
   "author": "madebydamien",
   "categories": [
