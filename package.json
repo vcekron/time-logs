@@ -67,7 +67,27 @@
       "description": "Shows active Time Log in menu bar",
       "mode": "menu-bar",
       "interval": "1m",
-      "refreshHUD": false
+      "refreshHUD": false,
+      "preferences": [
+        {
+          "name": "menuBarDisplay",
+          "title": "Menu Bar Display",
+          "description": "Show elapsed time or a simple icon in the menu bar",
+          "type": "dropdown",
+          "required": false,
+          "default": "time",
+          "data": [
+            {
+              "title": "Elapsed Time",
+              "value": "time"
+            },
+            {
+              "title": "Icon Only",
+              "value": "icon"
+            }
+          ]
+        }
+      ]
     }
   ],
   "preferences": [

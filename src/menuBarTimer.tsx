@@ -1,7 +1,11 @@
-import { MenuBarExtra, showHUD } from "@raycast/api";
+import { MenuBarExtra, showHUD, Icon, getPreferenceValues } from "@raycast/api";
 import { useEffect, useState } from "react";
 import { getActiveTimer, getProjectById, stopActiveTimer } from "./storage";
 import { TimeEntry, Project } from "./models";
+
+interface MenuBarPreferences {
+  menuBarDisplay: string;
+}
 
 export default function Command() {
   const [isLoading, setIsLoading] = useState(true);
@@ -82,19 +86,24 @@ export default function Command() {
     }
   };
 
+  const { menuBarDisplay } = getPreferenceValues<MenuBarPreferences>();
+  const showIcon = menuBarDisplay === "icon";
+
   const title = isLoading
     ? "Loading..."
     : activeTimer
-      ? elapsedTime
+      ? showIcon ? undefined : elapsedTime
       : "";
 
-  // Don't render anything if there's no active timer
+  const icon = activeTimer && showIcon ? Icon.Clock : undefined;
+  const tooltip = activeTimer ? `Active Timer — ${elapsedTime}` : "Active Timer";
+
   if (!isLoading && !activeTimer) {
     return null;
   }
 
   return (
-    <MenuBarExtra title={title} tooltip="Active Timer" isLoading={isLoading}>
+    <MenuBarExtra title={title} icon={icon} tooltip={tooltip} isLoading={isLoading}>
       {!isLoading && activeTimer && (
         <>
           <MenuBarExtra.Item title="Stop Timer" onAction={handleStopTimer} />
