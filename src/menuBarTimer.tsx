@@ -82,13 +82,10 @@ export default function Command() {
     }
   };
 
-  // Ensure we have the project text for display
-  const projectText = project?.name;
-  const projectName = projectText || "Unassigned";
   const title = isLoading
     ? "Loading..."
     : activeTimer
-      ? `${projectName} — ${activeTimer.description || "No Description"} · ${elapsedTime}`
+      ? elapsedTime
       : "";
 
   // Don't render anything if there's no active timer
