@@ -11,7 +11,7 @@
 - Reveal in Finder action on successful file export
 
 ### Changed
-- Menu bar timer shows only elapsed time by default, without project/task label
+- Menu bar timer defaults to elapsed time only; project/task label is opt-in
 - Compact time format in menu bar (H:MM instead of HH:MM)
 - Export to File is now the primary export action; Export to Clipboard is secondary
 - CSV is the default export format
