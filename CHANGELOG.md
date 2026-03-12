@@ -1,5 +1,10 @@
 # Time Logs Changelog
 
+## [1.2.0] - 2026-03-12
+
+### Added
+- Timer info (project, task, elapsed time) displayed in menu bar dropdown above Stop Timer action
+
 ## [1.1.1] - 2026-03-12
 
 ### Fixed

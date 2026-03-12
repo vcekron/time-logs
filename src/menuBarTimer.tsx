@@ -117,6 +117,9 @@ export default function Command() {
     <MenuBarExtra title={title} icon={icon} tooltip={tooltip} isLoading={isLoading}>
       {!isLoading && activeTimer && (
         <>
+          <MenuBarExtra.Item title={label || "Untitled"} />
+          <MenuBarExtra.Item title={`Elapsed: ${elapsedTime}`} />
+          <MenuBarExtra.Separator />
           <MenuBarExtra.Item title="Stop Timer" onAction={handleStopTimer} />
         </>
       )}
