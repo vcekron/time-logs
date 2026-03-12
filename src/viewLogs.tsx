@@ -11,6 +11,8 @@ import {
   useNavigation,
   Color,
   getPreferenceValues,
+  launchCommand,
+  LaunchType,
 } from "@raycast/api";
 import { TimeEntry, Project } from "./models";
 import {
@@ -945,6 +947,9 @@ export default function ViewLogs() {
       };
 
       await saveTimeEntry(newLog);
+
+      await launchCommand({ name: "menuBarTimer", type: LaunchType.UserInitiated });
+
       showToast({
         style: Toast.Style.Success,
         title: "Timer started",
@@ -966,6 +971,9 @@ export default function ViewLogs() {
   async function stopTimer() {
     try {
       const stoppedTimer = await stopActiveTimer();
+
+      await launchCommand({ name: "menuBarTimer", type: LaunchType.UserInitiated });
+
       if (stoppedTimer) {
         showToast({
           style: Toast.Style.Success,
