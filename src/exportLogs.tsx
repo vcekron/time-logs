@@ -77,7 +77,7 @@ export default function ExportLogs() {
       setEndDate(now);
     } else if (selectedTimeFrame === "last_month") {
       const firstDay = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-      const lastDay = new Date(now.getFullYear(), now.getMonth(), 0);
+      const lastDay = new Date(now.getFullYear(), now.getMonth(), 0, 23, 59, 59);
       setStartDate(firstDay);
       setEndDate(lastDay);
     }
