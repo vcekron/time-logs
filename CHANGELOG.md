@@ -1,5 +1,10 @@
 # Time Logs Changelog
 
+## [1.1.1] - 2026-03-12
+
+### Fixed
+- Menu bar timer not refreshing immediately when starting or stopping a timer from View Time Logs
+
 ## [1.1.0] - 2026-03-09
 
 ### Added
