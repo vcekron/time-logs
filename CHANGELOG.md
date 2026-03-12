@@ -1,5 +1,13 @@
 # Time Logs Changelog
 
+## [1.3.0] - 2026-03-12
+
+### Added
+- Last Fortnight export option covering the two most recent full Mon–Sun weeks
+
+### Fixed
+- Last Month export missing entries logged after midnight on the last day of the month
+
 ## [1.2.0] - 2026-03-12
 
 ### Added
