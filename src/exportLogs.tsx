@@ -36,7 +36,7 @@ export default function ExportLogs() {
   const [isLoading, setIsLoading] = useState(true);
   const [projects, setProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<string>("all");
-  const [timeFrame, setTimeFrame] = useState<string>("this_month");
+  const [timeFrame, setTimeFrame] = useState<string>("last_fortnight");
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [endDate, setEndDate] = useState<Date>(new Date());
   const [dailySummary, setDailySummary] = useState<boolean>(true);
@@ -80,6 +80,17 @@ export default function ExportLogs() {
       const lastDay = new Date(now.getFullYear(), now.getMonth(), 0, 23, 59, 59);
       setStartDate(firstDay);
       setEndDate(lastDay);
+    } else if (selectedTimeFrame === "last_fortnight") {
+      const dayOfWeek = now.getDay();
+      const daysToThisMonday = (dayOfWeek + 6) % 7;
+      const thisMonday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - daysToThisMonday);
+      const fortnightStart = new Date(thisMonday);
+      fortnightStart.setDate(thisMonday.getDate() - 14);
+      const fortnightEnd = new Date(thisMonday);
+      fortnightEnd.setDate(thisMonday.getDate() - 1);
+      fortnightEnd.setHours(23, 59, 59);
+      setStartDate(fortnightStart);
+      setEndDate(fortnightEnd);
     }
   }
 
@@ -447,6 +458,7 @@ export default function ExportLogs() {
       <Form.Dropdown id="timeFrame" title="Time Frame" value={timeFrame} onChange={setTimeFrame}>
         <Form.Dropdown.Item value="this_month" title="This Month" icon={Icon.Calendar} />
         <Form.Dropdown.Item value="last_month" title="Last Month" icon={Icon.Calendar} />
+        <Form.Dropdown.Item value="last_fortnight" title="Last Fortnight" icon={Icon.Calendar} />
         <Form.Dropdown.Item value="custom" title="Custom" icon={Icon.Calendar} />
       </Form.Dropdown>
 
